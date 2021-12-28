@@ -1,0 +1,34 @@
+bootcmd:
+ - subscription-manager config --rhsm.manage_repos=1
+
+rh_subscription:
+  activation-key: ${rh_key}
+  org: ${rh_org}
+  auto-attach: True
+  service-level: self-support
+  enable-repo:
+  - ansible-2-for-rhel-8-x86_64-rpms
+
+yum_repos:
+  hashicorp:
+    baseurl: https://rpm.releases.hashicorp.com/RHEL/$releasever/$basearch/stable
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://rpm.releases.hashicorp.com/gpg
+    name: Hashicorp Stable - $basearch  
+  docker-ce:
+    baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://download.docker.com/linux/centos/gpg
+    name: Docker CE Stable - $basearch
+
+packages:
+  - git
+  - terraform
+  - python3
+  - ansible
+
+package_update: true
+
+final_message: Development node was setup successfully!

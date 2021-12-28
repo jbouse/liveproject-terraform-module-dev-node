@@ -30,11 +30,6 @@ module "ec2-instance" {
 
   name = "development-node"
 
-  create_spot_instance                = true
-  spot_type                           = "persistent"
-  spot_instance_interruption_behavior = "stop"
-  spot_wait_for_fulfillment           = true
-
   ami                         = data.aws_ami.rhel8.id
   instance_type               = "t3.micro"
   key_name                    = "development-node-keypair"
